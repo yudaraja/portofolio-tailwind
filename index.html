@@ -6,7 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portofolio | Yuda Raja Ardenta</title>
   <link href="src/output.css" rel="stylesheet">
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <style>
+    .carousel-inner {
+      display: flex;
+      /* Menampilkan slide dalam baris horizontal */
+      transition: transform 0.4s ease-in-out;
+      /* Transisi halus saat berpindah slide */
+      overflow: visible;
+      /* Menyembunyikan bagian slide yang berada di luar tampilan */
+      position: relative;
+      /* Memungkinkan pengaturan posisi slide */
+    }
+
+    .item {
+      min-width: 100%;
+      /* Setiap slide mengambil lebar penuh dari carousel */
+      transition: opacity 0.4s ease-in-out;
+      /* Transisi halus untuk perubahan opacity */
+      opacity: 0;
+      /* Secara default, slide tidak terlihat */
+    }
+
+    .item.active {
+      opacity: 1;
+      /* Slide aktif akan terlihat */
+    }
+  </style>
 </head>
 
 <body>
@@ -52,11 +77,9 @@
 
   <div id="home" class="container pt-40 px-8 lg:px-16 flex flex-col items-center justify-center">
     <div class="md:flex md:flex-row-reverse md:items-center w-full">
-      <!-- Gambar -->
       <div class="flex items-center justify-center w-full md:w-1/2">
         <img src="dist/img/portfolio.png" alt="foto portofolio" class="w-3/4 lg:w-full" />
       </div>
-      <!-- Tulisan -->
       <div class="pt-8 md:pt-0 text-center md:text-left md:w-1/2">
         <div class="mb-2">
           <small class="font-semibold text-slate-800 text-lg lg:text-2xl"><span id="typewriter">Hello</span> 👋</small>
@@ -114,7 +137,6 @@
       <div class="bg-white p-6 shadow-md rounded-md">
         <h2 class="text-xl font-bold mb-4">Teknologi yang pernah digunakan</h2>
         <div class="flex flex-wrap gap-6">
-          <!-- Logo-Tech Stack -->
           <div
             class="w-12 h-12 bg-gray-200 p-2 rounded-md flex items-center justify-center transition duration-300 hover:bg-white hover:filter-none">
             <img
@@ -167,9 +189,7 @@
   </div>
 
   <div class="text-center font-bold text-4xl pt-52 mb-20">Portofolio</div>
-  <!-- Container Galeri -->
   <div id="portofolio" class="container px-8 lg:px-16 flex flex-col items-center justify-center">
-    <!-- Galeri Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
       <!-- card media online -->
@@ -178,7 +198,6 @@
         <div class="p-4 flex-grow">
           <h3 class="text-lg font-bold">Media Online</h3>
           <p class="text-gray-600">Sebuah media online sederhana dengan halaman berita dan admin panel.</p>
-          <!-- Tech Stack Logo -->
           <div class="mt-2 flex space-x-2">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png"
@@ -209,7 +228,6 @@
         <div class="p-4 flex-grow">
           <h3 class="text-lg font-bold">Company Profile</h3>
           <p class="text-gray-600">Sebuah company profile sederhana menggunakan tailwind.</p>
-          <!-- Tech Stack Logo -->
           <div class="mt-2 flex space-x-2">
             <img src="https://cdn.worldvectorlogo.com/logos/laravel-2.svg" alt="Laravel" class="w-8 h-8" />
             <img src="https://www.php.net/images/logos/new-php-logo.svg" alt="PHP" class="w-8 h-8" />
@@ -240,7 +258,6 @@
           <h3 class="text-lg font-bold">SCPK</h3>
           <p class="text-gray-600">Sistem cerdas pendukung keputusan menggunakan metode Simple Additive Weighting (SAW).
           </p>
-          <!-- Tech Stack Logo -->
           <div class="mt-2 flex space-x-2">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png"
@@ -272,7 +289,6 @@
           <h3 class="text-lg font-bold">SIRAP-ULIN</h3>
           <p class="text-gray-600">Strategi Percepatan Penyaluran Bantuan Stimulan Perumahan Swadaya.
           </p>
-          <!-- Tech Stack Logo -->
           <div class="mt-2 flex space-x-2">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png"
@@ -291,7 +307,7 @@
         </div>
         <div class="p-4"><br>
           <button class="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-            onclick="openCarousel('sirap-ulin')">
+            onclick="openCarousel('sirap-carousel')">
             Detail
           </button>
         </div>
@@ -307,9 +323,8 @@
           ✕
         </button>
         <div class="carousel">
-          <!-- Carousel Inner -->
           <div class="carousel-inner transition-transform duration-300 ease-in-out">
-            <div class="carousel-item">
+            <div class="item active" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Berita</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/berita.png" alt="home" class="w-600 h-400 rounded-md" />
@@ -320,7 +335,8 @@
                 berita-berita.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Detail Berita</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/detail-berita.png" alt="detail" class="w-600 h-400 rounded-md" />
@@ -330,7 +346,8 @@
                 dipilih.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Login Admin</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/login.png" alt="home" class="w-600 h-400 rounded-md" />
@@ -339,7 +356,8 @@
                 Halaman login untuk admin, dengan memasukkan email dan password untuk masuk ke admin panel.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Dashboard Admin</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/dashboard.png" alt="dashboard" class="w-600 h-400 rounded-md" />
@@ -348,7 +366,8 @@
                 Halaman dashboard admin berisikan jumlah dari data kategori, data post dan data admin.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Kategori</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/kategori.png" alt="kategori" class="w-600 h-400 rounded-md" />
@@ -357,7 +376,8 @@
                 Halaman kategori pada admin panel, berisikan kategori-kategori yang telah ditambahkan.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Post</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/post.png" alt="post" class="w-600 h-400 rounded-md" />
@@ -366,7 +386,8 @@
                 Halaman post pada admin panel, berisikan post berita yang telah ditambahkan.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Tambah Post</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/tambah-post.png" alt="tambah-post" class="w-600 h-400 rounded-md" />
@@ -376,7 +397,8 @@
                 berita, dan memilih kategori berita sesuai dengan kategori yang telah ditambahkan.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="media-online-carousel">
               <div class="carousel-header">Halaman Feedback</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/media-online/feedback.png" alt="feedback" class="w-600 h-400 rounded-md" />
@@ -385,17 +407,16 @@
                 Halaman feedback, menampilkan feedback yang diberikan oleh pengguna.
               </p>
             </div>
-            <!-- Tambahkan carousel-item lainnya -->
           </div>
-          <!-- Carousel Controls -->
+
           <button
             class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-r-lg"
-            onclick="prevSlide()">
+            onclick="prevSlide('media-online-carousel')">
             ❮
           </button>
           <button
             class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-l-lg"
-            onclick="nextSlide()">
+            onclick="nextSlide('media-online-carousel')">
             ❯
           </button>
         </div>
@@ -407,52 +428,55 @@
       class="fixed carousel-fix inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50 transition-opacity duration-300 opacity-0">
       <div class="bg-white p-6 rounded-md w-11/12 lg:w-3/4 max-w-4xl relative overflow-hidden">
         <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-          onclick="closeCarousel('company-profile-carousel')">
-          ✕
-        </button>
+          onclick="closeCarousel('company-profile-carousel')">✕</button>
         <div class="carousel">
-          <!-- Carousel Inner -->
-          <div class="carousel-inner transition-transform duration-300 ease-in-out">
-            <div class="carousel-item">
+          <div class="carousel-inner">
+            <div class="item active" data-carousel-id="company-profile-carousel">
               <div class="carousel-header">Halaman Home</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/company-profile/home.png" alt="home" class="w-600 h-400 rounded-md" />
               </div>
-              <p class="mt-4 text-gray-700">
-                Company Profile sederhana menggunakan tailwind css, berisikan halaman home, about, layanan, dan kontak.
-              </p>
+              <p class="mt-4 text-gray-700">Company Profile sederhana menggunakan tailwind css, berisikan halaman home,
+                about, layanan, dan kontak.</p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="company-profile-carousel">
               <div class="carousel-header">Halaman About</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/company-profile/about-detail.png" alt="about" class="w-600 h-400 rounded-md" />
               </div>
+              <p class="mt-4 text-gray-700">
+                Halaman ini menampilkan deskripsi singkat dari company.
+              </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="company-profile-carousel">
               <div class="carousel-header">Halaman Layanan</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/company-profile/layanan.png" alt="layanan" class="w-600 h-400 rounded-md" />
               </div>
+              <p class="mt-4 text-gray-700">
+                Halaman ini menampilkan layanan yang ditawarkan oleh company.
+              </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="company-profile-carousel">
               <div class="carousel-header">Halaman Kontak</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/company-profile/kontak.png" alt="kontak" class="w-600 h-400 rounded-md" />
               </div>
+              <p class="mt-4 text-gray-700">
+                Halaman ini menampilkan kontak dari company.
+              </p>
             </div>
-            <!-- Tambahkan carousel-item lainnya -->
           </div>
-          <!-- Carousel Controls -->
+
           <button
             class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-r-lg"
-            onclick="prevSlide()">
-            ❮
-          </button>
+            onclick="prevSlide('company-profile-carousel')">❮</button>
           <button
             class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-l-lg"
-            onclick="nextSlide()">
-            ❯
-          </button>
+            onclick="nextSlide('company-profile-carousel')">❯</button>
         </div>
       </div>
     </div>
@@ -465,15 +489,19 @@
           ✕
         </button>
         <div class="carousel">
-          <!-- Carousel Inner -->
           <div class="carousel-inner transition-transform duration-300 ease-in-out">
-            <div class="carousel-item">
+
+            <div class="item active" data-carousel-id="scpk">
               <div class="carousel-header">Halaman Landing Page</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/scpk/landing.png" alt="landing" class="w-600 h-400 rounded-md" />
               </div>
+              <p class="mt-4 text-gray-700">
+                Halaman landing page ketika masuk ke sistem.
+              </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="scpk">
               <div class="carousel-header">Halaman Dashboard</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/scpk/dashboard.png" alt="dashboard" class="w-600 h-400 rounded-md" />
@@ -483,17 +511,19 @@
                 perhitungan.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="scpk">
               <div class="carousel-header">Halaman Dashboard</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/scpk/diagram.png" alt="dashboard" class="w-600 h-400 rounded-md" />
               </div>
               <p class="mt-4 text-gray-700">
-                Dari halaman dashboard ini terdapat grafik presentase dari perhitungan yang mana poin terbanyak dari
-                kategori yang ada, serta ranking peserta 10 skor tersebar.
+                Dari halaman dashboard ini terdapat grafik presentase dari perhitungan poin terbanyak dari
+                kategori yang ada, serta ranking peserta 10 skor terbesar.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="scpk">
               <div class="carousel-header">Halaman Tambah</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/scpk/tambah.png" alt="tambah" class="w-600 h-400 rounded-md" />
@@ -502,7 +532,8 @@
                 Halaman ini berfungsi untuk menambahkan peserta yang akan dilakukan perhitungan.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="scpk">
               <div class="carousel-header">Halaman Ranking</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/scpk/ranking.png" alt="ranking" class="w-600 h-400 rounded-md" />
@@ -511,7 +542,8 @@
                 Halaman ini menunjukkan ranking seluruh peserta.
               </p>
             </div>
-            <div class="carousel-item">
+
+            <div class="item" data-carousel-id="scpk">
               <div class="carousel-header">Halaman Detail</div>
               <div class="flex items-center justify-center h-screen">
                 <img src="dist/img/scpk/detail.png" alt="detail" class="w-600 h-400 rounded-md" />
@@ -520,35 +552,103 @@
                 Halaman detail peserta ini menampilkan hasil perhitungan detail dari peserta.
               </p>
             </div>
-
-            <!-- Tambahkan carousel-item lainnya -->
           </div>
-          <!-- Carousel Controls -->
           <button
             class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-r-lg"
-            onclick="prevSlide()">
-            ❮
-          </button>
+            onclick="prevSlide('scpk')">❮</button>
           <button
             class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-l-lg"
-            onclick="nextSlide()">
-            ❯
-          </button>
+            onclick="nextSlide('scpk')">❯</button>
         </div>
       </div>
     </div>
-
   </div>
 
+  <!-- carousel sirap -->
+  <div id="sirap-carousel"
+    class="fixed carousel-fix inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50 transition-opacity duration-300 opacity-0">
+    <div class="bg-white p-6 rounded-md w-11/12 lg:w-3/4 max-w-4xl relative overflow-hidden">
+      <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        onclick="closeCarousel('sirap-carousel')">✕</button>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Halaman Login</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/loginn.png" alt="login" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Sistem Informasi SIRAP-ULIN merupakan sistem untuk memfasilitasi administrasi
+              pada program BSPS Dinas Perumahan dan Kawasan Permukiman Kab. Berau, berikut adalah halaman login dari
+              sistem SIRAP-ULIN.</p>
+          </div>
 
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Halaman Dashboard Admin</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/dash-admin.png" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Berikut adalah halaman dashboard dari admin.</p>
+          </div>
+
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Halaman Daftar Pengajuan</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/daftar-pengajuan.png" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Berikut adalah halaman daftar pengajuan yang telah dilakukan.</p>
+          </div>
+
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Halaman Verifikasi</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/verifikasii.png" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Berikut adalah verifikasi dari pengajuan yang telah dilakukan, pengajuan bisa
+              diverifikasi, direvisi dan juga ditolak.</p>
+          </div>
+
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Timeline</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/timeline.png" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Berikut adalah timeline dari pengajuan yang telah dilakukan, melalui timeline
+              ini dapat dilihat progress berkas yang diajukan.</p>
+          </div>
+
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Dashboard Masyarakat</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/dashboard-masyarakat.png" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Berikut adalah halaman dari dashboard masyarakat.</p>
+          </div>
+
+          <div class="item active" data-carousel-id="sirap-carousel">
+            <div class="carousel-header">Halaman Pengajuan</div>
+            <div class="flex items-center justify-center h-screen">
+              <img src="dist/img/sirap/pengajuan.png" class="w-600 h-400 rounded-md" />
+            </div>
+            <p class="mt-4 text-gray-700">Berikut adalah halaman untuk melakukan pengajuan.</p>
+          </div>
+        </div>
+
+        <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-r-lg"
+          onclick="prevSlide('sirap-carousel')">❮</button>
+        <button
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-l-lg"
+          onclick="nextSlide('sirap-carousel')">❯</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- kontak -->
   <div class="text-center font-bold text-4xl pt-52 mb-20">Kontak</div>
   <div id="kontak" class="w-full md:w-2/3 mx-auto flex flex-col space-y-8">
-    <!-- Kotak Kontak -->
     <div class="bg-white p-6 shadow-md rounded-md">
       <div class="flex flex-col space-y-4 gap-6">
-        <!-- LinkedIn -->
         <div class="flex items-center space-x-4">
-          <div class="w-12 h-12 bg-gray-200 p-2 rounded-md flex items-center justify-center">
+          <div class="w-12 h-12 bg-gray-200 p-2 rounded-md flex items-center justify-xcenter">
             <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="LinkedIn"
               class="w-full h-full object-contain" />
           </div>
@@ -557,7 +657,6 @@
             Yuda Raja Ardenta
           </a>
         </div>
-        <!-- Email -->
         <div class="flex items-center space-x-4">
           <div class="w-12 h-12 bg-gray-200 p-2 rounded-md flex items-center justify-center">
             <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"
@@ -570,16 +669,12 @@
       </div>
     </div>
   </div>
-
-
+  <!-- end kontak -->
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-4 mt-12 p-16 pt-16 pb-16">
     <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-      <!-- Name Section -->
       <div class="text-lg font-semibold">Yuda Raja Ardenta</div>
-
-      <!-- Navigation Links -->
       <div class="mt-4 md:mt-0">
         <ul class="flex space-x-4">
           <li><a href="#home" class="hover:text-gray-400">Home</a></li>
@@ -594,45 +689,95 @@
       </div>
     </div>
   </footer>
+  <!-- end footer -->
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="dist/js/script.js"></script>
+  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <!-- JavaScript -->
   <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".carousel-item");
-    const totalSlides = slides.length;
+    document.addEventListener('DOMContentLoaded', function () {
+      const carousels = document.querySelectorAll('.carousel-inner');
+      carousels.forEach(function (carousel) {
+        if (carousel.children.length > 0) {
+          new bootstrap.Carousel(carousel); // Inisialisasi bootstrap carousel jika sudah benar
+        }
+      });
+    });
 
-    function showSlide(index, modal) {
+    const currentSlide = {}; // Objek untuk menyimpan slide yang aktif
+
+    function showSlide(index, carouselId) {
+      console.log(`Showing slide ${index} for carousel ${carouselId}`);
+      const modal = document.getElementById(carouselId);
       const carouselInner = modal.querySelector(".carousel-inner");
-      const slides = modal.querySelectorAll(".carousel-item");
+      const slides = carouselInner.querySelectorAll(".item");
       const totalSlides = slides.length;
 
-      if (index >= totalSlides) index = 0;
-      if (index < 0) index = totalSlides - 1;
+      // Pastikan index berada dalam rentang yang valid
+      if (index >= totalSlides) index = 0; // Jika index lebih dari jumlah slide, kembali ke awal
+      if (index < 0) index = totalSlides - 1; // Jika index kurang dari 0, kembali ke slide terakhir
+
+      // Atur transformasi untuk memindahkan slide
       const offset = -100 * index;
       carouselInner.style.transform = `translateX(${offset}%)`;
-      currentSlide = index;
+
+      // Hapus kelas active dari semua slide
+      slides.forEach(slide => slide.classList.remove('active'));
+
+      // Tambahkan kelas active ke slide yang aktif
+      console.log(`Adding 'active' to slide ${index}`);
+      slides[index].classList.add('active');
+
+      // Perbarui index slide saat ini
+      currentSlide[carouselId] = index;
+
+      const images = slides[index].querySelectorAll('img');
+      images.forEach(img => console.log(`Image src: ${img.src}`));
+    }
+
+    function prevSlide(carouselId) {
+      if (currentSlide[carouselId] === undefined) {
+        currentSlide[carouselId] = 0;
+      }
+      showSlide(currentSlide[carouselId] - 1, carouselId);
+    }
+
+    function nextSlide(carouselId) {
+      if (currentSlide[carouselId] === undefined) {
+        currentSlide[carouselId] = 0;
+      }
+      showSlide(currentSlide[carouselId] + 1, carouselId);
     }
 
     function openCarousel(id) {
       const modal = document.getElementById(id);
-      let currentSlide = 0;
-
-      function prevSlide() {
-        showSlide(currentSlide - 1, modal);
-      }
-
-      function nextSlide() {
-        showSlide(currentSlide + 1, modal);
-      }
-
-      // Attach event listeners to the buttons
-      modal.querySelector('.prev-button').addEventListener('click', prevSlide);
-      modal.querySelector('.next-button').addEventListener('click', nextSlide);
-
-      // Open the modal and show the first slide
       modal.classList.remove('hidden');
       setTimeout(() => modal.classList.add('opacity-100'), 10);
-      showSlide(0, modal); // Start with the first slide
+
+      const carouselInner = modal.querySelector(".carousel-inner");
+      const slides = carouselInner.querySelectorAll(".item");
+
+      // Tampilkan hanya slide dengan carousel-id yang benar
+      let firstVisibleSlideIndex = null;
+
+      slides.forEach((slide, index) => {
+        if (slide.dataset.carouselId === id) {
+          if (firstVisibleSlideIndex === null) {
+            firstVisibleSlideIndex = index;
+          }
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // Pastikan memulai dengan slide pertama yang terlihat
+      if (firstVisibleSlideIndex !== null) {
+        currentSlide[id] = firstVisibleSlideIndex;
+        showSlide(currentSlide[id], id);
+      }
     }
 
     function closeCarousel(id) {
@@ -641,9 +786,6 @@
       setTimeout(() => modal.classList.add('hidden'), 300);
     }
   </script>
-
-  <script src="dist/js/script.js"></script>
-  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <script>
     new Typewriter("#typewriter", {
       strings: [
@@ -657,36 +799,6 @@
       loop: true,
       delay: 60,
     });
-  </script>
-  <script>
-    function openCarousel(id) {
-      document.getElementById(id).classList.remove("hidden");
-    }
-
-    function closeCarousel(id) {
-      document.getElementById(id).classList.add("hidden");
-    }
-
-    let slideIndex = 0;
-
-    function showSlides(n) {
-      let slides = document.querySelectorAll(".carousel-item");
-      if (n >= slides.length) slideIndex = 0;
-      if (n < 0) slideIndex = slides.length - 1;
-      slides.forEach((slide, index) => {
-        slide.style.display = index === slideIndex ? "block" : "none";
-      });
-    }
-
-    function nextSlide() {
-      showSlides(++slideIndex);
-    }
-
-    function prevSlide() {
-      showSlides(--slideIndex);
-    }
-
-    showSlides(slideIndex);
   </script>
   <script>
     document.querySelectorAll('nav a, footer a').forEach(anchor => {
